@@ -12,11 +12,14 @@ which is already wired up in this repo.
 
 ## 1. Publish the prototypes (one-time setup)
 
-1. In GitHub: **Settings → Pages → Build and deployment → Source → “GitHub Actions”.**
-2. Push to `main` (or the working branch). The
+1. Push to `main` (or the working branch). The
    [`Deploy prototypes to GitHub Pages`](.github/workflows/deploy-pages.yml)
-   workflow publishes the whole repo as-is.
-3. Your site base URL will be:
+   workflow auto-enables Pages (GitHub Actions build type) on its first run and
+   publishes the whole repo as-is.
+   - *Fallback:* if your org blocks workflows from enabling Pages, turn it on
+     manually once via **Settings → Pages → Build and deployment → Source →
+     “GitHub Actions”**, then re-run the workflow.
+2. Your site base URL will be:
 
    ```
    https://<owner>.github.io/<repo>/
