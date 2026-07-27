@@ -461,6 +461,24 @@ class Component extends DCLogic {
       messages: this.state.messages.concat([this.mkAI(reply.text, { cards: reply.cards || null, taskDone: matched })]),
       thinking: false, chips: [], showChips: false
     });
+    // Fire a machine-detectable completion beacon the moment a task's answer lands so a
+    // Maze mission can auto-succeed. Guarded by mazeMode, so it only runs on a deep-linked
+    // (?task / ?test) Maze session — never in the design canvas or the Explore demo.
+    if (matched && this.mazeMode) this.signalMazeComplete();
+  }
+
+  // Completion beacon for Maze. Two optional signals, both wrapped so a locked-down
+  // runtime can never throw: (1) a "#task-complete" URL hash Maze can match as a success
+  // screen; (2) a postMessage for any parent frame embedding the prototype in an iframe.
+  signalMazeComplete() {
+    try {
+      if (location.hash !== '#task-complete')
+        history.replaceState(null, '', location.pathname + location.search + '#task-complete');
+    } catch (e) {}
+    try {
+      if (window.parent && window.parent !== window)
+        window.parent.postMessage({ type: 'maze-task-complete', scenario: this.state.scenarioId }, '*');
+    } catch (e) {}
   }
 
   chipTap(chip) {

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>myScout prototypes — Maze test launcher</title>
+<style>
+  :root{
+    --blurple:#501CD2; --purple-600:#3D1A9E; --deepest:#19063A;
+    --creme:#F9F7F6; --border:#E8E6EE; --ink:#1c1c22; --muted:#5f5f66;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--creme);color:var(--ink);
+       font-family:'Inter Tight','Inter',system-ui,-apple-system,sans-serif;
+       line-height:1.5;padding:48px 20px 80px;}
+  .wrap{max-width:860px;margin:0 auto;}
+  .eyebrow{text-transform:uppercase;letter-spacing:.12em;font-size:12px;font-weight:700;color:var(--blurple);}
+  h1{font-size:34px;font-weight:800;letter-spacing:-.02em;margin:8px 0 8px;}
+  .lede{color:var(--muted);font-size:17px;margin:0 0 12px;max-width:640px;}
+  .note{font-size:14px;color:var(--muted);background:#fff;border:1px solid var(--border);
+        border-radius:12px;padding:14px 16px;margin:20px 0 28px;}
+  .note code{background:#EFEAF7;color:var(--purple-600);border-radius:5px;padding:1px 6px;font-size:13px;}
+  h2{font-size:14px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);
+     margin:34px 0 12px;}
+  .card{background:#fff;border:1px solid var(--border);border-radius:16px;padding:18px 20px;margin-bottom:12px;
+        box-shadow:0 1px 3px rgba(31,17,72,.06);}
+  .card .top{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;}
+  .card .title{font-size:18px;font-weight:700;letter-spacing:-.01em;}
+  .card .prompt{color:var(--muted);font-size:14.5px;margin:4px 0 12px;}
+  .url{display:flex;gap:8px;align-items:center;flex-wrap:wrap;}
+  .url input{flex:1;min-width:260px;font:13px/1.4 ui-monospace,SFMono-Regular,Menlo,monospace;
+             color:#26262c;background:var(--creme);border:1px solid var(--border);border-radius:8px;
+             padding:9px 11px;}
+  .btn{border:none;border-radius:999px;padding:9px 16px;font-family:inherit;font-size:14px;font-weight:600;
+       cursor:pointer;white-space:nowrap;}
+  .btn-open{background:var(--blurple);color:#fff;text-decoration:none;display:inline-flex;align-items:center;}
+  .btn-open:hover{background:var(--purple-600);}
+  .btn-copy{background:#fff;color:var(--blurple);border:1px solid var(--border);}
+  .btn-copy:hover{background:#EFEAF7;}
+  footer{margin-top:40px;font-size:13px;color:var(--muted);}
+  footer a{color:var(--blurple);}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="eyebrow">myScout · usability testing</div>
+  <h1>Maze test launcher</h1>
+  <p class="lede">Each card is a self-contained entry point for one Maze mission. Open a link to preview it,
+  or copy the URL straight into a Maze block's <em>prototype / live-website</em> field.</p>
+
+  <div class="note">
+    Each task lands the participant directly in the chat with the question pre-filled — they just press send.
+    When the AI's answer appears, the prototype adds <code>#task-complete</code> to the URL and shows a
+    <em>"Task completed — continue in Maze"</em> marker, so the mission can auto-succeed.
+    See <a href="../MAZE.md">MAZE.md</a> for full setup.
+  </div>
+
+  <h2>Diabetes study</h2>
+  <div id="diabetes"></div>
+
+  <h2>Stress &amp; mental-health study</h2>
+  <div id="stress"></div>
+
+  <footer>
+    Base URL: <code id="base"></code><br>
+    Filenames contain spaces; they are URL-encoded automatically (<code>%20</code>). Prototypes load
+    React from a public CDN, so test devices need normal internet access.
+  </footer>
+</div>
+
+<script>
+  // dc.html prototypes live one level up from /maze/.
+  var root = new URL("../", location.href).href;
+  document.getElementById("base").textContent = root;
+
+  var DIABETES = [
+    { title: "Task 1 — Diabetes basics", prompt: "“What is type 2 diabetes and how could it affect my daily life?”",
+      file: "Task 1 - Diabetes Basics.dc.html", q: "task=1" },
+    { title: "Task 2 — Metformin", prompt: "“I’ve been prescribed Metformin. What should I know about this medication?”",
+      file: "Task 2 - Metformin.dc.html", q: "task=2" },
+    { title: "Task 3 — Diet changes", prompt: "“What diet changes help manage type 2 diabetes?”",
+      file: "Task 3 - Diet Changes.dc.html", q: "task=3" },
+    { title: "Task 4 — Insurance / programs", prompt: "“What programs does my plan offer for diabetes?”",
+      file: "Task 4 - Insurance Programs.dc.html", q: "task=4" },
+    { title: "Full flow (all 4 tasks, one chat)", prompt: "Continuous test1 flow — good for a single end-to-end mission.",
+      file: "Task 1 - Diabetes Basics.dc.html", q: "test=1" }
+  ];
+  var STRESS = [
+    { title: "Task 5 — Manage stress", prompt: "“I’ve been feeling very stressed lately. What can I do to manage it?”",
+      file: "Task 5 - Manage Stress.dc.html", q: "test=2" },
+    { title: "Task 6 — Depression symptoms", prompt: "“What are the symptoms of depression?”",
+      file: "Task 6 - Depression Symptoms.dc.html", q: "test=2" },
+    { title: "Task 7 — Crisis escalation", prompt: "Crisis prompt — verifies the 988 / emergency escalation response.",
+      file: "Task 7 - Escalation.dc.html", q: "test=2" }
+  ];
+
+  function render(list, mountId){
+    var mount = document.getElementById(mountId);
+    list.forEach(function(t){
+      var href = root + encodeURI(t.file) + "?" + t.q;
+      var card = document.createElement("div");
+      card.className = "card";
+      var top = document.createElement("div"); top.className = "top";
+      var title = document.createElement("div"); title.className = "title"; title.textContent = t.title;
+      var open = document.createElement("a"); open.className = "btn btn-open"; open.textContent = "Open ↗";
+      open.href = href; open.target = "_blank"; open.rel = "noopener";
+      top.appendChild(title); top.appendChild(open);
+      var prompt = document.createElement("div"); prompt.className = "prompt"; prompt.textContent = t.prompt;
+      var urlRow = document.createElement("div"); urlRow.className = "url";
+      var input = document.createElement("input"); input.readOnly = true; input.value = href;
+      input.addEventListener("focus", function(){ this.select(); });
+      var copy = document.createElement("button"); copy.className = "btn btn-copy"; copy.textContent = "Copy URL";
+      copy.addEventListener("click", function(){
+        input.select();
+        navigator.clipboard && navigator.clipboard.writeText(href);
+        copy.textContent = "Copied ✓"; setTimeout(function(){ copy.textContent = "Copy URL"; }, 1500);
+      });
+      urlRow.appendChild(input); urlRow.appendChild(copy);
+      card.appendChild(top); card.appendChild(prompt); card.appendChild(urlRow);
+      mount.appendChild(card);
+    });
+  }
+  render(DIABETES, "diabetes");
+  render(STRESS, "stress");
+</script>
+</body>
+</html>
