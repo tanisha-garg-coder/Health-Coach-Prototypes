@@ -1,0 +1,385 @@
+/* ==========================================================================
+   League Design System — Colors & Type
+   Source of truth for all colors, typography, and base tokens.
+   ========================================================================== */
+
+/* --- Typefaces ---------------------------------------------------------- */
+
+@font-face {
+  font-family: 'Inter Tight';
+  src: url('fonts/InterTight-Thin.ttf') format('truetype');
+  font-weight: 100; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Inter Tight';
+  src: url('fonts/InterTight-ExtraLight.ttf') format('truetype');
+  font-weight: 200; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Inter Tight';
+  src: url('fonts/InterTight-Light.ttf') format('truetype');
+  font-weight: 300; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Inter Tight';
+  src: url('fonts/InterTight-Regular.ttf') format('truetype');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Inter Tight';
+  src: url('fonts/InterTight-Italic.ttf') format('truetype');
+  font-weight: 400; font-style: italic; font-display: swap;
+}
+@font-face {
+  font-family: 'Inter Tight';
+  src: url('fonts/InterTight-Medium.ttf') format('truetype');
+  font-weight: 500; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Inter Tight';
+  src: url('fonts/InterTight-SemiBold.ttf') format('truetype');
+  font-weight: 600; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Inter Tight';
+  src: url('fonts/InterTight-Bold.ttf') format('truetype');
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Inter Tight';
+  src: url('fonts/InterTight-BoldItalic.ttf') format('truetype');
+  font-weight: 700; font-style: italic; font-display: swap;
+}
+@font-face {
+  font-family: 'Inter Tight';
+  src: url('fonts/InterTight-ExtraBold.ttf') format('truetype');
+  font-weight: 800; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Inter Tight';
+  src: url('fonts/InterTight-Black.ttf') format('truetype');
+  font-weight: 900; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Inter Tight';
+  src: url('fonts/InterTight-BlackItalic.ttf') format('truetype');
+  font-weight: 900; font-style: italic; font-display: swap;
+}
+
+:root {
+  /* ---------------------------------------------------------------
+     PRIMARY PALETTE — the canonical League brand colors.
+     Naming matches the brand book.
+     --------------------------------------------------------------- */
+  --blurple-deepest: #19063A;   /* dark backgrounds (impact/section slides)  */
+  --blurple-deep:    #250D53;   /* headlines, stats, supporting text; bg    */
+  --blurple-mid:     #501CD2;   /* CTAs, buttons, text links — NEVER a bg   */
+  --creme:           #F9F7F6;   /* default light background                 */
+  --teal:            #00C29B;   /* LOGO GLYPH ONLY — never elsewhere        */
+  --league-gray:     #666666;   /* body text on light backgrounds only      */
+  --white:           #FFFFFF;   /* text on dark Blurple backgrounds         */
+
+  /* Convenience aliases to the primary palette.
+     These also catch legacy references from earlier versions of the system. */
+  --league-blurple: var(--blurple-mid);       /* the "purple" of the brand */
+  --league-purple:  var(--blurple-mid);       /* legacy alias              */
+  --league-navy:    var(--blurple-deep);      /* deepest text / dark bg    */
+  --purple-50:      var(--lilac-100);         /* legacy alias              */
+  --purple-100:     var(--lilac-200);
+  --purple-200:     var(--lilac-300);
+  --purple-400:     var(--blurple-mid);
+  --purple-600:     #3F14A6;                   /* blurple-mid hover (darker) */
+  --purple-700:     var(--blurple-deep);
+  --navy-50:        var(--lilac-100);
+  --navy-700:       var(--blurple-deep);
+
+  /* ---------------------------------------------------------------
+     SECONDARY PALETTE — LILAC
+     Backgrounds, brand elements, icon backgrounds, pills.
+     --------------------------------------------------------------- */
+  --lilac-100: #ECEAF1;
+  --lilac-200: #D9D6E5;
+  --lilac-300: #B4ADCA;
+
+  /* ---------------------------------------------------------------
+     SECONDARY PALETTE — SEAFOAM
+     --------------------------------------------------------------- */
+  --seafoam-100: #DBEAEB;
+  --seafoam-200: #B8D6D8;
+  --seafoam-300: #4E6B6D;   /* requires WHITE text when used as background */
+
+  /* ---------------------------------------------------------------
+     SECONDARY PALETTE — PERIWINKLE
+     --------------------------------------------------------------- */
+  --periwinkle-100: #F3F5FF;
+  --periwinkle-200: #E1E7FE;
+  --periwinkle-300: #767C98;   /* requires WHITE text when used as bg     */
+
+  /* ---------------------------------------------------------------
+     NEUTRALS — minimal; League's palette is already tight.
+     --------------------------------------------------------------- */
+  --black:    #000000;
+  --creme-100: #F9F7F6;       /* canonical default neutral */
+  --creme-150: #F3EFED;       /* one step down from creme-100 */
+  --gray-50:  var(--creme-100);
+  --gray-100: var(--creme-150);
+  --gray-200: #E4E1DE;
+  --gray-300: #C9C5C1;
+  --gray-400: #9A9693;
+  --gray-500: var(--league-gray);   /* #666666 — canonical body-text gray */
+  --gray-600: #4A4A4A;
+  --gray-700: #2E2E2E;
+  --gray-800: #1A1A1A;
+
+  /* ---------------------------------------------------------------
+     SEMANTIC STATUS COLORS — tuned to sit next to the brand.
+     Teal is RESERVED for the logo glyph, so success ≠ teal here.
+     --------------------------------------------------------------- */
+  --success:        #2F8F5E;
+  --success-bg:     #E4F2EB;
+  --success-fg:     #1E5A3B;
+
+  --warning:        #C98A1A;
+  --warning-bg:     #FBF0DC;
+  --warning-fg:     #7A530E;
+
+  --danger:         #C93434;
+  --danger-bg:      #FBE5E5;
+  --danger-fg:      #7F2020;
+
+  --info:           #3B6BFB;   /* Periwinkle-adjacent */
+  --info-bg:        var(--periwinkle-200);
+  --info-fg:        #1D3FB5;
+
+  /* ---------------------------------------------------------------
+     SEMANTIC SURFACE + TEXT TOKENS
+     --------------------------------------------------------------- */
+  --bg:          var(--creme);
+  --bg-muted:    var(--lilac-100);
+  --bg-subtle:   var(--gray-100);
+  --bg-inverse:  var(--blurple-deepest);   /* impact / section backgrounds */
+  --bg-dark:     var(--blurple-deep);      /* default dark background      */
+  --bg-brand:    var(--blurple-mid);       /* RESTRICTED: CTAs / links only */
+
+  --surface:          var(--white);
+  --surface-raised:   var(--white);
+  --surface-sunken:   var(--creme);
+  --surface-inverse:  var(--blurple-deepest);
+
+  --fg1:    var(--blurple-deep);    /* primary text — headlines, stats     */
+  --fg2:    var(--league-gray);     /* body text on light (#666666)        */
+  --fg3:    #8A8A8A;                /* tertiary / captions                 */
+  --fg4:    var(--gray-400);        /* disabled / placeholder              */
+  --fg-on-brand:   var(--white);
+  --fg-on-dark:    var(--white);
+  --fg-link:       var(--blurple-mid);
+
+  --border:         var(--gray-200);
+  --border-strong:  var(--gray-300);
+  --border-inverse: rgba(255,255,255,0.16);
+  --focus-ring:     rgba(80, 28, 210, 0.35);
+
+  /* ---------------------------------------------------------------
+     TYPOGRAPHY
+     Inter Tight is the single family — use weight + size to build hierarchy.
+     --------------------------------------------------------------- */
+  --font-sans:    'Inter Tight', 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-display: 'Inter Tight', 'Inter', system-ui, sans-serif; /* tight, heavy */
+  --font-mono:    ui-monospace, 'SFMono-Regular', 'Menlo', 'Consolas', monospace;
+
+  /* Type scale (1.250 major-third-ish, tuned) */
+  --text-xs:   12px;
+  --text-sm:   14px;
+  --text-base: 16px;
+  --text-md:   18px;
+  --text-lg:   20px;
+  --text-xl:   24px;
+  --text-2xl:  32px;
+  --text-3xl:  40px;
+  --text-4xl:  56px;
+  --text-5xl:  72px;
+  --text-6xl:  96px;
+
+  --leading-tight:   1.05;
+  --leading-snug:    1.2;
+  --leading-normal:  1.45;
+  --leading-relaxed: 1.6;
+
+  --tracking-tighter: -0.035em;  /* display */
+  --tracking-tight:   -0.02em;   /* headings */
+  --tracking-normal:   0;
+  --tracking-wide:     0.04em;
+  --tracking-eyebrow:  0.12em;   /* ALL-CAPS eyebrows */
+
+  /* ---------------------------------------------------------------
+     SPACING, RADII, SHADOWS, MOTION
+     --------------------------------------------------------------- */
+  --space-0:  0;
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  20px;
+  --space-6:  24px;
+  --space-8:  32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+
+  --radius-xs:    4px;
+  --radius-sm:    6px;
+  --radius-md:    10px;
+  --radius-lg:    16px;
+  --radius-xl:    24px;
+  --radius-2xl:   32px;
+  --radius-pill:  999px;
+
+  --shadow-xs: 0 1px 2px rgba(31, 17, 72, 0.06);
+  --shadow-sm: 0 1px 3px rgba(31, 17, 72, 0.08), 0 1px 2px rgba(31, 17, 72, 0.04);
+  --shadow-md: 0 6px 16px -4px rgba(31, 17, 72, 0.12), 0 2px 4px rgba(31, 17, 72, 0.05);
+  --shadow-lg: 0 16px 32px -8px rgba(31, 17, 72, 0.18), 0 4px 8px rgba(31, 17, 72, 0.06);
+  --shadow-xl: 0 32px 64px -16px rgba(31, 17, 72, 0.25);
+  --shadow-brand: 0 12px 28px -8px rgba(80, 28, 210, 0.35);
+
+  /* Motion */
+  --ease-standard: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-emphasized: cubic-bezier(0.2, 0.9, 0.1, 1);
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+
+  --dur-fast:  120ms;
+  --dur-base:  200ms;
+  --dur-slow:  320ms;
+}
+
+/* ==========================================================================
+   SEMANTIC ELEMENT STYLES
+   Drop <link rel="stylesheet" href="colors_and_type.css"> and get sensible
+   defaults. Use .h1/.h2/… utility classes for headings inside components.
+   ========================================================================== */
+
+html, body {
+  font-family: var(--font-sans);
+  color: var(--fg1);
+  background: var(--bg);
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* NOTE: Display and headings cap at SemiBold (600).
+   The brand does NOT use Bold/ExtraBold/Black for display copy. */
+.display, h1.display {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--text-6xl);
+  line-height: var(--leading-tight);
+  letter-spacing: -0.03em;
+  color: var(--fg1);
+}
+
+.h1, h1 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--text-4xl);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+  color: var(--fg1);
+}
+
+.h2, h2 {
+  font-weight: 600;
+  font-size: var(--text-3xl);
+  line-height: var(--leading-snug);
+  letter-spacing: var(--tracking-tight);
+  color: var(--fg1);
+}
+
+.h3, h3 {
+  font-weight: 600;
+  font-size: var(--text-2xl);
+  line-height: var(--leading-snug);
+  letter-spacing: var(--tracking-tight);
+  color: var(--fg1);
+}
+
+.h4, h4 {
+  font-weight: 500;
+  font-size: var(--text-xl);
+  line-height: var(--leading-snug);
+  letter-spacing: var(--tracking-tight);
+  color: var(--fg1);
+}
+
+.h5, h5 {
+  font-weight: 500;
+  font-size: var(--text-md);
+  line-height: var(--leading-snug);
+  color: var(--fg1);
+}
+
+.eyebrow {
+  font-weight: 600;
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+  color: var(--league-purple);
+}
+
+.lead {
+  font-size: var(--text-lg);
+  line-height: var(--leading-relaxed);
+  color: var(--fg2);
+  font-weight: 400;
+}
+
+p, .p {
+  font-size: var(--text-base);
+  line-height: var(--leading-relaxed);
+  color: var(--fg2);
+}
+
+small, .small {
+  font-size: var(--text-sm);
+  color: var(--fg3);
+}
+
+.caption {
+  font-size: var(--text-xs);
+  color: var(--fg3);
+  line-height: var(--leading-normal);
+}
+
+code, kbd, samp, pre, .mono {
+  font-family: var(--font-mono);
+  font-size: 0.92em;
+}
+
+code {
+  background: var(--gray-100);
+  color: var(--navy-700);
+  padding: 0.1em 0.35em;
+  border-radius: var(--radius-xs);
+}
+
+a {
+  color: var(--league-purple);
+  text-decoration: none;
+  text-underline-offset: 3px;
+  transition: color var(--dur-fast) var(--ease-standard);
+}
+a:hover { color: var(--purple-700); text-decoration: underline; }
+
+hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: var(--space-8) 0;
+}
+
+::selection {
+  background: var(--purple-200);
+  color: var(--league-navy);
+}

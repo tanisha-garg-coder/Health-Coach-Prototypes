@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>myScout — Diabetes chat prototype</title>
+<link rel="stylesheet" href="_ds/league-brand-design-system-eabd0bcf-cb88-456f-95b4-57c71f062708/colors_and_type.css">
+<script src="_ds/league-brand-design-system-eabd0bcf-cb88-456f-95b4-57c71f062708/_ds_bundle.js"></script>
+<script src="./image-slot.js"></script>
+<!-- MAZE TRACKING: paste your Maze snippet on the next line (keep it inside <helmet>
+<title>myScout — Diabetes chat prototype</title>). -->
+
+<style>
+  body { margin: 0; }
+  a { color: var(--blurple-mid); }
+  a:hover { color: var(--purple-600); }
+  @keyframes scoutSparkle { 0%,100% { opacity:.5; transform:scale(.9) rotate(-4deg); } 50% { opacity:1; transform:scale(1) rotate(0); } }
+  @keyframes scoutDot { 0%,80%,100% { opacity:.2; } 40% { opacity:1; } }
+  .scout-track::-webkit-scrollbar { display:none; }
+</style>
+</helmet>
+<template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><rect width="200" height="200" fill="#501CD2"/><g fill="#fff"><rect x="60" y="70" width="80" height="46" rx="10"/><rect x="72" y="120" width="26" height="14" rx="7"/></g><text x="100" y="160" text-anchor="middle" font-family="Inter Tight,sans-serif" font-size="20" font-weight="700" fill="#fff">Diabetes</text></svg></template>
+
+<div style="min-height:100vh;width:100%;background:#9a9ca1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;padding:clamp(8px,2vh,40px) 16px clamp(8px,2vh,40px);box-sizing:border-box;font-family:'Inter Tight','Inter',system-ui,sans-serif;">
+
+  <div style="width:414px;max-width:100%;height:min(846px, 100vh - 2 * clamp(8px,2vh,40px));background:#0a0a0a;border-radius:56px;padding:12px;box-sizing:border-box;box-shadow:0 30px 70px -20px rgba(10,10,20,.55);">
+    <div style="position:relative;width:100%;height:100%;background:#ffffff;border-radius:44px;overflow:hidden;display:flex;flex-direction:column;">
+
+      <sc-if value="{{ isExplore }}">
+        <div style="flex:0 0 auto;background:#ECE9F5;">
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 26px 4px;font-size:15px;font-weight:600;color:#151515;">
+            <span style="letter-spacing:-.01em;">9:41</span>
+            <span style="display:inline-flex;align-items:center;gap:7px;">
+              <svg width="18" height="12" viewBox="0 0 18 12" fill="#151515"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="5" y="5" width="3" height="7" rx="1"/><rect x="10" y="2.5" width="3" height="9.5" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/></svg>
+              <svg width="17" height="12" viewBox="0 0 17 12" fill="none"><path d="M8.5 3.2c2.2 0 4.2.85 5.7 2.25l1.55-1.6C13.85 2.05 11.3 1 8.5 1S3.15 2.05 1.25 3.85L2.8 5.45C4.3 4.05 6.3 3.2 8.5 3.2Z" fill="#151515"/><path d="M8.5 6.4c1.2 0 2.3.47 3.15 1.25l1.55-1.6C11.95 4.9 10.3 4.2 8.5 4.2s-3.45.7-4.7 1.85l1.55 1.6C6.2 6.87 7.3 6.4 8.5 6.4Z" fill="#151515"/><path d="M8.5 9.1c.63 0 1.2.26 1.62.68L8.5 11.5 6.88 9.78A2.3 2.3 0 0 1 8.5 9.1Z" fill="#151515"/></svg>
+              <svg width="26" height="13" viewBox="0 0 26 13" fill="none"><rect x="1" y="1" width="21" height="11" rx="3" stroke="#151515" stroke-opacity=".4"/><rect x="3" y="3" width="17" height="7" rx="1.5" fill="#151515"/><rect x="23.5" y="4.5" width="2" height="4" rx="1" fill="#151515" fill-opacity=".4"/></svg>
+            </span>
+          </div>
+        </div>
+
+        <div data-explore-scroll style="flex:1 1 auto;overflow-y:auto;background:#fff;">
+          <div data-greeting style="background:#ECE9F5;padding:clamp(10px,2.4vh,22px) 24px clamp(8px,2.2vh,24px);text-align:center;">
+            <div style="font-size:20px;font-weight:700;color:#1a1a1a;letter-spacing:-.01em;margin-bottom:clamp(8px,1.8vh,16px);">You've got this, [Raquel]!</div>
+            <div style="display:flex;align-items:center;gap:14px;background:#fff;border-radius:14px;padding:clamp(10px,1.8vh,14px);box-shadow:0 1px 3px rgba(31,17,72,.08);">
+              <div style="flex:0 0 auto;width:52px;height:52px;border-radius:12px;background:#501CD2;display:flex;align-items:center;justify-content:center;color:#fff;">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 13l2.5-3 2 2.2L16 8"/><circle cx="8" cy="8" r="1.3" fill="currentColor" stroke="none"/></svg>
+              </div>
+              <div style="flex:1;text-align:left;">
+                <div style="font-size:16px;font-weight:700;color:#1c1c22;line-height:1.2;">View My Health Dashboard</div>
+                <div style="font-size:14px;color:#6b6b70;margin-top:2px;">Latest insights and more</div>
+              </div>
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#b3b0b8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+            </div>
+          </div>
+          <div data-tabs style="display:flex;gap:0;padding:0 20px;border-bottom:1px solid #ececec;background:#fff;position:sticky;top:0;z-index:2;">
+            <div style="flex:1;text-align:center;padding:clamp(10px,2vh,16px) 0 clamp(9px,1.8vh,14px);font-size:15px;font-weight:500;color:#5f5f66;">Activities</div>
+            <div style="flex:1;text-align:center;padding:16px 0 14px;font-size:15px;font-weight:500;color:#5f5f66;">Progress</div>
+            <div style="flex:1;text-align:center;padding:16px 0 14px;font-size:15px;font-weight:500;color:#5f5f66;">History</div>
+            <div style="flex:1;text-align:center;padding:16px 0 12px;font-size:15px;font-weight:600;color:#501CD2;border-bottom:2px solid #501CD2;">Explore</div>
+          </div>
+
+          <div style="padding:clamp(10px,2vh,22px) 22px 22px;">
+          <div style="border-radius:22px;padding:clamp(14px,2.4vh,22px) 22px clamp(16px,2.6vh,24px);background:linear-gradient(125deg,#EFEAF7 0%,#D8C7EC 55%,#B79EDD 100%);box-shadow:0 1px 3px rgba(31,17,72,.08);">
+            <div style="font-size:15px;color:#3a2f52;margin-bottom:6px;">Have a health question?</div>
+            <div style="font-size:20px;font-weight:700;color:#1e1533;line-height:1.3;letter-spacing:-.01em;">Stop searching. Get answers to your health questions, fast.</div>
+            <button onClick="{{ onOpenChat }}" style="margin-top:clamp(12px,2.2vh,20px);display:inline-flex;align-items:center;gap:10px;background:#501CD2;color:#fff;border:none;border-radius:999px;padding:14px 22px;font-family:inherit;font-size:15.5px;font-weight:600;cursor:pointer;box-shadow:0 8px 20px -8px rgba(80,28,210,.6);">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="#fff"><path d="M12 2.5l1.4 5c.18.66.7 1.18 1.36 1.36l5 1.4-5 1.4c-.66.18-1.18.7-1.36 1.36L12 18l-1.4-5c-.18-.66-.7-1.18-1.36-1.36l-5-1.4 5-1.4c.66-.18 1.18-.7 1.36-1.36L12 2.5z"/></svg>
+              Ask your AI Health Coach
+            </button>
+          </div>
+
+          <div style="margin-top:28px;font-size:24px;font-weight:700;color:#1a1a1a;letter-spacing:-.015em;">Trending programs</div>
+          <div style="margin-top:8px;font-size:19px;color:#3a3a40;">Popular picks near you</div>
+
+          <div class="scout-track" style="margin-top:18px;display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding-bottom:4px;">
+            <div style="flex:0 0 290px;scroll-snap-align:start;">
+              <div style="position:relative;width:100%;height:210px;border-radius:16px;overflow:hidden;background:#ECE9F5;">
+                <image-slot id="explore-prog-1" shape="rect" fit="cover" placeholder="Program illustration (person cycling)" style="width:100%;height:210px;display:block;"></image-slot>
+                <div style="position:absolute;top:12px;right:12px;background:#fff;border-radius:8px;padding:5px 12px;font-size:12px;font-weight:700;letter-spacing:.06em;color:#1c1c22;box-shadow:0 1px 3px rgba(31,17,72,.12);">NEW</div>
+              </div>
+              <div style="margin-top:12px;font-size:13px;font-weight:700;letter-spacing:.08em;color:#5f5f66;">HEALTH PROGRAM</div>
+              <div style="margin-top:6px;font-size:18px;font-weight:700;color:#1c1c22;line-height:1.25;letter-spacing:-.01em;text-wrap:pretty;">Get Moving on Two Wheels</div>
+              <div style="margin-top:5px;font-size:14.5px;color:#5f5f66;line-height:1.4;text-wrap:pretty;">Build cardio fitness at your own pace. Ride your way to steadier energy, stronger legs, and better blood sugar control.</div>
+            </div>
+            <div style="flex:0 0 290px;scroll-snap-align:start;">
+              <div style="position:relative;width:100%;height:210px;border-radius:16px;overflow:hidden;background:#ECE9F5;">
+                <image-slot id="explore-prog-2" shape="rect" fit="cover" placeholder="Program illustration (person meditating)" style="width:100%;height:210px;display:block;"></image-slot>
+              </div>
+              <div style="margin-top:12px;font-size:13px;font-weight:700;letter-spacing:.08em;color:#5f5f66;">HEALTH PROGRAM</div>
+              <div style="margin-top:6px;font-size:18px;font-weight:700;color:#1c1c22;line-height:1.25;letter-spacing:-.01em;text-wrap:pretty;">Everyday Meditation</div>
+              <div style="margin-top:5px;font-size:14.5px;color:#5f5f66;line-height:1.4;text-wrap:pretty;">Just a few quiet minutes a day. Learn simple practices to lower stress, sharpen focus, and rest more easily.</div>
+            </div>
+          </div>
+        </div>
+
+        </div>
+
+        <div style="flex:0 0 auto;display:flex;justify-content:space-around;align-items:flex-end;padding:10px 10px 4px;border-top:1px solid #eee;background:#fff;">
+          <div style="display:flex;flex-direction:column;align-items:center;gap:4px;color:#5f5f66;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V20h14V9.5"/></svg>
+            <span style="font-size:11.5px;">Home</span>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:4px;color:#5f5f66;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
+            <span style="font-size:11.5px;">Benefits</span>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:4px;color:#333;">
+            <div style="width:44px;height:44px;border-radius:999px;background:#EFEAF7;display:flex;align-items:center;justify-content:center;">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#333" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 5.6a5.4 5.4 0 0 0-7.7 0L12 6.7l-1.1-1.1a5.4 5.4 0 1 0-7.7 7.7l1.1 1.1L12 22l7.7-7.6 1.1-1.1a5.4 5.4 0 0 0 0-7.7Z"/></svg>
+            </div>
+            <span style="font-size:11.5px;">Care</span>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:4px;color:#5f5f66;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 13h6M9 17h4"/></svg>
+            <span style="font-size:11.5px;">Claims</span>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:4px;color:#501CD2;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polyline points="8.5 12 11 14.5 15.5 9.5"/></svg>
+            <span style="font-size:11.5px;font-weight:600;">Journey</span>
+          </div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ isChat }}">
+      <div style="flex:0 0 auto;display:flex;align-items:center;justify-content:space-between;padding:14px 26px 4px;font-size:15px;font-weight:600;color:#111;">
+        <span style="letter-spacing:-.01em;">9:41</span>
+        <span style="display:inline-flex;align-items:center;gap:7px;">
+          <svg width="18" height="12" viewBox="0 0 18 12" fill="#111"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="5" y="5" width="3" height="7" rx="1"/><rect x="10" y="2.5" width="3" height="9.5" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/></svg>
+          <svg width="17" height="12" viewBox="0 0 17 12" fill="none"><path d="M8.5 3.2c2.2 0 4.2.85 5.7 2.25l1.55-1.6C13.85 2.05 11.3 1 8.5 1S3.15 2.05 1.25 3.85L2.8 5.45C4.3 4.05 6.3 3.2 8.5 3.2Z" fill="#111"/><path d="M8.5 6.4c1.2 0 2.3.47 3.15 1.25l1.55-1.6C11.95 4.9 10.3 4.2 8.5 4.2s-3.45.7-4.7 1.85l1.55 1.6C6.2 6.87 7.3 6.4 8.5 6.4Z" fill="#111"/><path d="M8.5 9.1c.63 0 1.2.26 1.62.68L8.5 11.5 6.88 9.78A2.3 2.3 0 0 1 8.5 9.1Z" fill="#111"/></svg>
+          <svg width="26" height="13" viewBox="0 0 26 13" fill="none"><rect x="1" y="1" width="21" height="11" rx="3" stroke="#111" stroke-opacity=".4"/><rect x="3" y="3" width="17" height="7" rx="1.5" fill="#111"/><rect x="23.5" y="4.5" width="2" height="4" rx="1" fill="#111" fill-opacity=".4"/></svg>
+        </span>
+      </div>
+
+      <div style="flex:0 0 auto;position:relative;display:flex;align-items:center;justify-content:center;padding:10px 20px 14px;">
+        <button onClick="{{ onGoExplore }}" aria-label="Collapse" style="position:absolute;left:18px;top:50%;transform:translateY(-50%);background:none;border:none;padding:6px;cursor:pointer;display:inline-flex;color:#D2570E;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <span style="font-size:17px;font-weight:600;color:#151515;letter-spacing:-.01em;">Chat</span>
+        <button onClick="{{ onGoExplore }}" style="position:absolute;right:18px;top:50%;transform:translateY(-50%);background:none;border:none;padding:6px 2px;cursor:pointer;font-family:inherit;font-size:16px;color:#222;letter-spacing:-.01em;">End Chat</button>
+      </div>
+      <div style="flex:0 0 auto;height:1px;background:#eeecec;margin:0 0;"></div>
+
+      <div ref="{{ setScrollEl }}" style="flex:1 1 auto;overflow-y:auto;padding:20px 20px 8px;display:flex;flex-direction:column;gap:16px;">
+        <sc-for list="{{ messages }}" as="m" hint-placeholder-count="2">
+
+          <sc-if value="{{ m.isAI }}">
+            <div style="display:flex;flex-direction:column;align-items:flex-start;max-width:100%;">
+              <div style="display:flex;flex-direction:column;gap:12px;font-size:15.5px;line-height:1.5;color:#26262c;text-wrap:pretty;max-width:300px;">
+                <sc-for list="{{ m.paragraphs }}" as="para" hint-placeholder-count="1">
+                  <div><sc-for list="{{ para.segs }}" as="seg" hint-placeholder-count="1"><sc-if value="{{ seg.isText }}"><span>{{ seg.text }}</span></sc-if><sc-if value="{{ seg.isCite }}"><a href="#" onClick="{{ onCite }}" title="{{ seg.title }}" style="color:#501CD2;font-weight:600;text-decoration:none;">{{ seg.label }}</a></sc-if></sc-for></div>
+                </sc-for>
+              </div>
+
+              <sc-if value="{{ m.hasCards }}">
+                <div style="position:relative;width:100%;margin-top:12px;">
+                  <div id="track-{{ m.id }}" class="scout-track" style="display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding:2px;scrollbar-width:none;">
+                    <sc-for list="{{ m.cards }}" as="c" hint-placeholder-count="1">
+                      <div style="flex:0 0 268px;scroll-snap-align:center;background:#fff;border:1px solid #e9e6e3;border-radius:16px;overflow:hidden;box-shadow:0 1px 3px rgba(31,17,72,.08);">
+                        <div style="width:100%;height:158px;overflow:hidden;background:#eceae7;">
+                          <image-slot id="{{ c.slotId }}" shape="rect" fit="cover" placeholder="{{ c.placeholder }}" style="width:100%;height:158px;display:block;"></image-slot>
+                        </div>
+                        <div style="padding:14px 16px 16px;">
+                          <div style="font-size:12.5px;color:#8a8a8a;margin-bottom:3px;">{{ c.tag }}</div>
+                          <div style="font-size:16.5px;font-weight:700;color:#1c1c22;line-height:1.25;letter-spacing:-.01em;">{{ c.title }}</div>
+                          <div style="font-size:14px;color:#5f5f66;margin-top:4px;line-height:1.4;">{{ c.desc }}</div>
+                          <button style="margin-top:14px;width:100%;background:#D2570E;color:#fff;border:none;border-radius:999px;padding:12px 16px;font-family:inherit;font-size:15px;font-weight:600;cursor:pointer;">{{ c.cta }}</button>
+                        </div>
+                      </div>
+                    </sc-for>
+                  </div>
+                  <sc-if value="{{ m.multi }}">
+                    <button onClick="{{ m.scrollPrev }}" aria-label="Previous" style="position:absolute;left:-6px;top:66px;width:36px;height:36px;border-radius:999px;background:#fff;border:1px solid #e5e2df;box-shadow:0 2px 6px rgba(31,17,72,.14);display:flex;align-items:center;justify-content:center;cursor:pointer;color:#333;">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+                    </button>
+                    <button onClick="{{ m.scrollNext }}" aria-label="Next" style="position:absolute;right:-6px;top:66px;width:36px;height:36px;border-radius:999px;background:#fff;border:1px solid #e5e2df;box-shadow:0 2px 6px rgba(31,17,72,.14);display:flex;align-items:center;justify-content:center;cursor:pointer;color:#333;">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                    </button>
+                  </sc-if>
+                </div>
+              </sc-if>
+
+              <div style="font-size:12px;color:#9a9a9a;margin-top:6px;">{{ m.time }}</div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ m.taskDone }}">
+            <div style="display:flex;align-items:center;gap:10px;width:100%;margin:6px 0 2px;">
+              <div style="flex:1;height:1px;background:#DCD8E8;"></div>
+              <div style="display:flex;align-items:center;gap:7px;background:#EFEAF7;border:1px solid #D9CEF2;color:#3D1A9E;border-radius:999px;padding:7px 14px;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.1em;white-space:nowrap;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Task completed — continue in Maze
+              </div>
+              <div style="flex:1;height:1px;background:#DCD8E8;"></div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ m.isUser }}">
+            <div style="display:flex;flex-direction:column;align-items:flex-end;">
+              <div style="background:#3b7c76;color:#fff;font-size:15.5px;line-height:1.45;padding:11px 15px;border-radius:16px 16px 4px 16px;max-width:250px;text-wrap:pretty;">{{ m.text }}</div>
+              <div style="font-size:12px;color:#9a9a9a;margin-top:6px;">{{ m.time }}</div>
+            </div>
+          </sc-if>
+
+        </sc-for>
+
+        <sc-if value="{{ thinking }}">
+          <div style="display:flex;align-items:center;gap:9px;padding:2px 0;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="#3b7c76" style="animation:scoutSparkle 1.3s ease-in-out infinite;"><path d="M12 2.5l1.5 5.4c.2.7.7 1.2 1.4 1.4l5.4 1.5-5.4 1.5c-.7.2-1.2.7-1.4 1.4L12 19.1l-1.5-5.4c-.2-.7-.7-1.2-1.4-1.4L3.7 10.8l5.4-1.5c.7-.2 1.2-.7 1.4-1.4L12 2.5z"/><path d="M18.5 15l.6 2.1c.08.28.28.48.56.56l2.1.6-2.1.6c-.28.08-.48.28-.56.56l-.6 2.1-.6-2.1a.9.9 0 0 0-.56-.56l-2.1-.6 2.1-.6c.28-.08.48-.28.56-.56l.6-2.1z"/></svg>
+            <span style="font-size:15px;color:#6b7280;">Thinking</span>
+            <span style="display:inline-flex;gap:3px;">
+              <span style="width:5px;height:5px;border-radius:50%;background:#9aa0a6;animation:scoutDot 1.2s infinite;"></span>
+              <span style="width:5px;height:5px;border-radius:50%;background:#9aa0a6;animation:scoutDot 1.2s infinite .2s;"></span>
+              <span style="width:5px;height:5px;border-radius:50%;background:#9aa0a6;animation:scoutDot 1.2s infinite .4s;"></span>
+            </span>
+          </div>
+        </sc-if>
+      </div>
+
+      <sc-if value="{{ showChips }}">
+        <div style="flex:0 0 auto;display:flex;flex-wrap:wrap;gap:9px;padding:6px 20px 10px;">
+          <sc-for list="{{ chips }}" as="c" hint-placeholder-count="4">
+            <sc-if value="{{ c.selected }}">
+              <button onClick="{{ c.onTap }}" style="background:#D2570E;color:#fff;border:1px solid #D2570E;border-radius:999px;padding:9px 16px;font-family:inherit;font-size:14px;font-weight:600;cursor:pointer;min-height:38px;">{{ c.label }}</button>
+            </sc-if>
+            <sc-if value="{{ c.notSelected }}">
+              <button onClick="{{ c.onTap }}" style="background:#fff;color:#2f7b73;border:1px solid #2f7b73;border-radius:999px;padding:9px 16px;font-family:inherit;font-size:14px;font-weight:600;cursor:pointer;min-height:38px;">{{ c.label }}</button>
+            </sc-if>
+          </sc-for>
+        </div>
+      </sc-if>
+
+      <div style="flex:0 0 auto;display:flex;align-items:center;gap:10px;padding:6px 20px 0;">
+        <div style="flex:1;display:flex;align-items:center;border:1px solid #d8d5d2;border-radius:12px;padding:0 14px;height:48px;background:#fff;">
+          <input value="{{ inputText }}" onInput="{{ onInput }}" onKeyDown="{{ onKeyDown }}" placeholder="Write a message ..." style="flex:1;border:none;outline:none;font-family:inherit;font-size:15.5px;color:#26262c;background:transparent;" />
+        </div>
+        <sc-if value="{{ canSend }}">
+          <button onClick="{{ onSend }}" aria-label="Send" style="flex:0 0 auto;width:44px;height:44px;border-radius:999px;background:#2f7b73;border:none;display:flex;align-items:center;justify-content:center;cursor:pointer;color:#fff;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="6 11 12 5 18 11"/></svg>
+          </button>
+        </sc-if>
+        <sc-if value="{{ cannotSend }}">
+          <button aria-label="Send" disabled style="flex:0 0 auto;width:44px;height:44px;border-radius:999px;background:#fff;border:1px solid #dcdad7;display:flex;align-items:center;justify-content:center;cursor:not-allowed;color:#b7b4b1;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="6 11 12 5 18 11"/></svg>
+          </button>
+        </sc-if>
+      </div>
+
+      <div style="flex:0 0 auto;font-size:11.5px;line-height:1.4;color:#a3a3a3;padding:8px 20px 4px;">This is an AI tool designed to provide general information only. It cannot offer medical advice, diagnosis, or treatment. Always consult a healthcare professional for medical concerns.</div>
+      </sc-if>
+
+      <div style="flex:0 0 auto;display:flex;justify-content:center;padding:6px 0 10px;">
+        <div style="width:134px;height:5px;border-radius:999px;background:#111;"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <sc-if value="{{ showBar }}">
+    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:center;background:rgba(255,255,255,.9);border:1px solid rgba(255,255,255,.6);border-radius:999px;padding:8px 10px;box-shadow:0 6px 20px -8px rgba(0,0,0,.35);">
+      <span style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#6b6b6b;padding-left:8px;">Scenario</span>
+      <sc-for list="{{ scenarios }}" as="s" hint-placeholder-count="3">
+        <sc-if value="{{ s.active }}">
+          <button onClick="{{ s.onClick }}" style="background:#250D53;color:#fff;border:none;border-radius:999px;padding:8px 16px;font-family:inherit;font-size:13.5px;font-weight:600;cursor:pointer;">{{ s.label }}</button>
+        </sc-if>
+        <sc-if value="{{ s.inactive }}">
+          <button onClick="{{ s.onClick }}" style="background:transparent;color:#3a3a3a;border:none;border-radius:999px;padding:8px 16px;font-family:inherit;font-size:13.5px;font-weight:500;cursor:pointer;">{{ s.label }}</button>
+        </sc-if>
+      </sc-for>
+      <button onClick="{{ onRestart }}" style="background:#fff;color:#501CD2;border:1px solid #e0dcec;border-radius:999px;padding:8px 16px;font-family:inherit;font-size:13.5px;font-weight:600;cursor:pointer;">Restart</button>
+    </div>
+  </sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:480,&quot;height&quot;:1000},&quot;prefillPrompt&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Does my insurance offer any programs or resources to help me manage type 2 diabetes?&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Task&quot;},&quot;startScreen&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;explore&quot;,&quot;chat&quot;],&quot;default&quot;:&quot;explore&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Demo&quot;},&quot;startScenario&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;test1&quot;,&quot;test2&quot;,&quot;task1&quot;,&quot;task2&quot;,&quot;task3&quot;,&quot;task4&quot;,&quot;emergency&quot;],&quot;default&quot;:&quot;test1&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Demo&quot;},&quot;typingDelay&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;min&quot;:400,&quot;max&quot;:3000,&quot;step&quot;:100,&quot;default&quot;:1400,&quot;unit&quot;:&quot;ms&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Demo&quot;},&quot;showScenarioBar&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Demo&quot;}}">
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.uid = 0;
+    // ----- Maze deep-linking -----
+    // Each usability task is its own entry point. Point a Maze block at:
+    //   ...myScout Chat.dc.html?task=1   (2, 3, 4)
+    // task=N lands directly in the chat for that task with the scenario bar hidden.
+    let params = {};
+    try { params = Object.fromEntries(new URLSearchParams(location.search)); } catch (e) {}
+    const taskMap = { '1': 'task1', '2': 'task2', '3': 'task3', '4': 'task4' };
+    const testMap = { '1': 'test1', '2': 'test2' };
+    const mazeTask = taskMap[params.task] || testMap[params.test];
+    this.mazeMode = !!mazeTask;
+    const scenarioId = mazeTask || props.startScenario || 'test1';
+    let screen = props.startScreen === 'chat' ? 'chat' : 'explore';
+    if (params.screen === 'chat' || params.screen === 'explore') screen = params.screen;
+    if (this.mazeMode) screen = 'chat';
+    this.state = {
+      screen, scenarioId,
+      messages: [], queue: [], thinking: false,
+      showChips: false, chips: [], selectedChip: null, inputText: ''
+    };
+  }
+
+  // ---------- SCENARIO SCRIPTS ----------
+  // Replace / extend these with the real conversations. Each scenario:
+  //   welcome: { text, chips[] }   shown first (optional)
+  //   autoUser: "text"             auto-sent on load to demo a state (optional)
+  //   replies: [ { text, chips?[], cards?[], noChips? } ]  served in order per user send
+  //   card: { tag, title, desc, cta, placeholder }
+  // Tapping a program chip asks which area to focus on — it never jumps straight to program cards.
+  programIntro() {
+    return { priority: true, notATask: true, exactOnly: true, keys: ['find a program', 'explore health programs', 'explore health topics', 'health topics'],
+      text: "I'd love to help you find the perfect program. What area are you most focused on right now?" };
+  }
+
+  scenarios() {
+    const WELCOME = "Hello! I'm myScout, an AI health assistant. I can help you explore health programs, find recommendations that support your health goals and provide wellness tips. Choose a suggestion below to get started or ask a question.";
+    const START_CHIPS = ['Find a program', 'Ask a health question', 'Explore health topics', 'Something else'];
+    // Reply blocks shared between the continuous test flow and the per-task scenarios.
+    // Citation tokens [[n:Program Title]] render inline as [n] links (no carousel).
+    const R1 = { text: "It's understandable to feel overwhelmed after a new diagnosis of type 2 diabetes. Essentially, type 2 diabetes means your body has trouble controlling blood sugar levels, either because it doesn't produce enough insulin or doesn't use it effectively. This can lead to high blood sugar, which over time can affect your heart, blood vessels, kidneys, eyes, and nerves [[1:Managing Type 2 Diabetes]][[2:Getting Started With Your Diabetes Journey]].\n\nIn your day-to-day life, managing type 2 diabetes often involves making lifestyle adjustments such as eating a healthy diet, getting regular physical activity, managing stress, and ensuring you get enough sleep [[1:Managing Type 2 Diabetes]]. You'll also likely need to monitor your blood sugar levels and may require medication to help keep them in a healthy range [[1:Managing Type 2 Diabetes]][[3:Monitoring Diabetes for Everyday Health]].\n\nWould you like to explore more about specific aspects of managing type 2 diabetes, such as diet, exercise, or monitoring?", keys: ['what is', 'what does', 'mean', 'affect', 'daily life', 'day-to-day', 'day to day', 'diagnos', 'just told', 'just been told', 'is type 2'] };
+    const R2 = { text: "It's good that you're learning more about metformin as you start taking it for your type 2 diabetes. Metformin is a common medication that helps manage blood sugar levels by reducing the amount of glucose your liver produces and improving how your body uses insulin [[1:Master Your Meds: Pills for Type 2 Diabetes]].\n\nYou might experience some side effects, especially when you first start taking it, such as an upset stomach, nausea, or diarrhea [[1:Master Your Meds: Pills for Type 2 Diabetes]]. These often improve over time, and taking metformin with food can sometimes help. It's important to continue taking it as prescribed by your doctor.\n\nWould you like to know more about managing potential side effects or how metformin fits into your overall diabetes management plan?", keys: ['metformin', 'medication', 'medicine', 'pill', 'prescri', 'side effect', 'drug'] };
+    const R3 = { text: "Making dietary changes is a key part of managing type 2 diabetes, and focusing on balanced eating can help you manage your blood sugar levels. Generally, this involves choosing foods that are lower in refined carbohydrates and added sugars, and higher in fiber, lean protein, and healthy fats [[1:Nutrition and Diabetes]][[2:Tackle Prediabetes with Nutrition]]. For example, you might focus on whole grains, plenty of vegetables, fruits, and lean protein sources. The plate method can be a helpful visual guide: fill half your plate with non-starchy vegetables, a quarter with lean protein, and a quarter with carbohydrates [[1:Nutrition and Diabetes]].\n\nIt's also beneficial to limit sugary drinks and choose healthier fats [[2:Tackle Prediabetes with Nutrition]].\n\nWould you like to explore specific food groups or meal planning strategies?", keys: ['diet', 'eat', 'eating', 'food', 'nutrition', 'meal', 'carb', 'sugar', 'plate'] };
+    const R4 = { text: "That's a great question! I can help you explore health programs and guidance that might be available to you. Based on your plan, here are a few resources that support managing type 2 diabetes.",
+      keys: ['insurance', 'insurer', 'plan', 'employer', 'cover', 'coverage', 'benefit', 'program', 'resource', 'offer'],
+      cards: [
+        { tag: 'Health program', title: 'Managing Type 2 Diabetes', desc: "Diabetes can be overwhelming\u2014but it doesn't have to be! Learn how to manage your condition and balance blood sugars through diet, exercise, and more.", cta: 'Learn more', placeholder: 'Managing Type 2 Diabetes' },
+        { tag: 'Health program', title: 'Getting Started With Your Diabetes Journey', desc: 'Every journey has to start somewhere! Learn important basics of diabetes and how to manage the condition.', cta: 'Learn more', placeholder: 'Getting started with diabetes' },
+        { tag: 'Health program', title: 'Organize Your Diabetes Care', desc: 'Keeping on top of your diabetes care can be a big task. Think of this program as your personal organizer!', cta: 'Learn more', placeholder: 'Organize your diabetes care' }
+      ] };
+    return {
+      // ----- USABILITY TEST 1: full continuous flow (all four tasks, one chat) -----
+      // Each user turn advances to the next answer in order, so participants can
+      // complete Task 1 -> 2 -> 3 -> 4 without ever leaving the chat.
+      test1: {
+        id: 'test1', label: 'Test 1 \u00b7 Full flow',
+        welcome: { text: WELCOME, chips: START_CHIPS },
+        replies: [
+          Object.assign({}, R1, { chips: ['Something else'] }),
+          Object.assign({}, R2, { chips: ['Something else'] }),
+          Object.assign({}, R3, { chips: ['Something else'] }),
+          Object.assign({}, R4, { chips: ['View my benefits', 'Something else'] })
+        ]
+      },
+      // ----- USABILITY TEST 2: Stress & mental health (all tasks, one chat) -----
+      test2: {
+        id: 'test2', label: 'Test 2 \u00b7 Full flow',
+        welcome: { text: WELCOME, chips: START_CHIPS },
+        replies: [
+          { text: "It sounds like you've been feeling really stressed lately, and it's completely understandable to want some ways to manage that. There are many simple and effective strategies you can try to help keep stress at bay.\n\nThings like getting some movement in, even for just 10 minutes, can release feel-good chemicals and reduce tension [[1:Lower Your Stress]]. Practicing deep breathing techniques, such as box breathing, can also help calm your body and mind [[2:Manage Stress More Calmly]]. Additionally, finding a hobby you love or spending time in nature can provide a valuable break and help you de-stress [[1:Lower Your Stress]].\n\nWould you like to explore more tips related to physical activity, mindfulness, or perhaps time management?", keys: ['stress', 'stressed', 'overwhelm', 'relax', 'manage', 'tips', 'calm', 'tension', 'burnout', 'burn out'] },
+          { text: "It's understandable to wonder about the symptoms of depression, especially when you're feeling stressed. Depression can manifest in various ways, and it's more than just feeling sad from time to time.\n\nCommon symptoms can include a persistent feeling of sadness, hopelessness, or emptiness, and a loss of interest or pleasure in activities you once enjoyed. You might also experience changes in sleep patterns (sleeping too much or too little), fatigue or low energy, changes in appetite, difficulty concentrating, or feelings of worthlessness or guilt [[1:Learn to Face Depression]][[2:What You Need to Know About Depression]]. If you're having thoughts about hurting yourself, it's important to seek help immediately.\n\nConnecting specific feelings to a diagnosis is best done by a healthcare professional who can consider your full health picture. Since you're looking to manage your feelings of depression, discussing these symptoms with a doctor or mental health professional can help you get personalized support and develop a plan that's right for you.\n\nWould you like to explore some strategies for managing daily mood or stress, or perhaps learn more about how to connect with a mental health professional?", keys: ['depress', 'symptom', 'sad', 'hopeless', 'mood', 'mental', 'anxi', 'feeling down', 'empt'] },
+          { text: "Looks like you need more support than I can offer right now. Please call or text the Crisis Lifeline at 988 for help or call 911 if you\u2019re in immediate danger.", priority: true, keys: ['cope', "can't cope", 'cant cope', 'chest', 'slept', "haven't slept", 'panic', 'danger', 'hurt myself', 'suicid', 'crisis', 'breathing', 'tightness', 'what should i', 'what do i do', 'emergency'] },
+          { text: "You're very welcome. I'm here to help you explore health programs and guidance. What would you like help with next?", keys: ['thank', 'thanks', 'okay', 'ok ', 'appreciate', 'will do', 'bye', 'got it'] }
+        ]
+      },
+      // ----- Per-task scenarios (optional; used only if a block deep-links ?task=N) -----
+      task1: { id: 'task1', label: 'Task 1 \u00b7 Diagnosis', welcome: { text: WELCOME, chips: START_CHIPS }, replies: [Object.assign({}, R1, { chips: ['Something else'] })] },
+      task2: { id: 'task2', label: 'Task 2 \u00b7 Metformin', welcome: { text: WELCOME, chips: START_CHIPS }, replies: [Object.assign({}, R2, { chips: ['Something else'] })] },
+      task3: { id: 'task3', label: 'Task 3 \u00b7 Diet', welcome: { text: WELCOME, chips: START_CHIPS }, replies: [Object.assign({}, R3, { chips: ['Something else'] })] },
+      task4: { id: 'task4', label: 'Task 4 \u00b7 Insurance', welcome: { text: WELCOME, chips: START_CHIPS }, replies: [Object.assign({}, R4, { chips: ['View my benefits', 'Something else'] })] },
+      emergency: {
+        id: 'emergency', label: 'Emergency escalation',
+        welcome: { text: WELCOME, chips: START_CHIPS },
+        autoUser: "I'm having severe chest pains and difficulty breathing right now",
+        replies: [
+          { text: "Sorry, I am unable to help you with that request. If you have any questions or are experiencing new or worsening symptoms, contact your provider or go to your nearest emergency department.",
+            noChips: true }
+        ]
+      }
+    };
+  }
+
+  componentDidMount() { this.loadScenario(this.state.scenarioId, this.state.screen === 'chat'); }
+  componentWillUnmount() { clearTimeout(this._r); clearTimeout(this._c); clearTimeout(this._t); }
+  componentDidUpdate() { if (this.scrollEl) this.scrollEl.scrollTop = this.scrollEl.scrollHeight; }
+
+  parseBody(text) {
+    return String(text).split(/\n{2,}/).map((p, pi) => {
+      const segs = []; const re = /\[\[(\d+):([^\]]+)\]\]/g;
+      let last = 0, si = 0, m2;
+      while ((m2 = re.exec(p))) {
+        if (m2.index > last) segs.push({ id: pi + '-' + (si++), isText: true, isCite: false, text: p.slice(last, m2.index) });
+        segs.push({ id: pi + '-' + (si++), isText: false, isCite: true, label: '[' + m2[1] + ']', title: m2[2] });
+        last = m2.index + m2[0].length;
+      }
+      if (last < p.length) segs.push({ id: pi + '-' + (si++), isText: true, isCite: false, text: p.slice(last) });
+      return { id: 'p' + pi, segs };
+    });
+  }
+
+  mkAI(text, extra) { return Object.assign({ id: 'm' + (++this.uid), role: 'ai', text, time: '12:00 PM' }, extra || {}); }
+  mkUser(text) { return { id: 'm' + (++this.uid), role: 'user', text, time: '12:00 PM' }; }
+
+  loadScenario(id, enter) {
+    clearTimeout(this._r); clearTimeout(this._c); clearTimeout(this._t);
+    const sc = this.scenarios()[id];
+    const msgs = sc.welcome ? [this.mkAI(sc.welcome.text)] : [];
+    const next = {
+      scenarioId: id, messages: msgs, queue: sc.replies.slice(),
+      thinking: false, selectedChip: null,
+      inputText: enter ? (this.props.prefillPrompt ?? "Does my insurance offer any programs or resources to help me manage type 2 diabetes?") : '',
+      chips: sc.welcome ? sc.welcome.chips.slice() : [],
+      showChips: !!sc.welcome
+    };
+    if (enter) next.screen = 'chat';
+    this.setState(next, () => { if (enter && sc.autoUser) this._t = setTimeout(() => this.send(sc.autoUser), 700); });
+  }
+
+  send(text) {
+    text = (text || '').trim();
+    if (!text || this.state.thinking) return;
+    this.pendingUserText = text;
+    // On the very first message of a free (non-deep-linked) chat, pick the flow
+    // that matches the topic so the right test plays. Deep-linked studies stay locked.
+    let queue = this.state.queue, scenarioId = this.state.scenarioId;
+    const firstTurn = !this.state.messages.some(m => m.role === 'user');
+    if (firstTurn && !this.mazeMode) {
+      const routed = this.routeByTopic(text);
+      if (routed && routed !== scenarioId) {
+        const sc = this.scenarios()[routed];
+        queue = sc.replies.slice(); scenarioId = routed;
+      }
+    }
+    this.setState({
+      messages: this.state.messages.concat([this.mkUser(text)]),
+      inputText: '', showChips: false, chips: [], thinking: true, queue, scenarioId
+    });
+    clearTimeout(this._r);
+    const delay = this.props.typingDelay || 1400;
+    this._r = setTimeout(() => this.serveReply(), delay);
+  }
+
+  routeByTopic(text) { return null; } // this prototype is locked to the diabetes flow (test1)
+
+  serveReply() {
+    const text = String(this.pendingUserText || '').toLowerCase();
+    const list = [this.programIntro()].concat(this.state.queue || []);
+    // Match the user's message to the most relevant scripted reply (any order, repeatable).
+    // Priority replies (e.g. crisis escalation) win even when other keywords also match.
+    const hit = r => (r.keys || []).some(k => text.includes(k));
+    let reply = list.find(r => r.priority && hit(r)) || list.find(hit);
+    // Fallback: score each reply by how many of its keywords share a word stem with
+    // the message, so paraphrased questions still land on the right answer.
+    if (!reply) {
+      const words = text.split(/[^a-z0-9]+/).filter(w => w.length > 3);
+      let best = 0;
+      list.filter(r => !r.exactOnly).forEach(r => {
+        const score = (r.keys || []).reduce((n, k) => {
+          const stem = k.split(' ')[0];
+          return n + (words.some(w => w.startsWith(stem.slice(0, 4)) || stem.startsWith(w.slice(0, 4))) ? 1 : 0);
+        }, 0);
+        if (score > best) { best = score; reply = r; }
+      });
+    }
+    // Chip-driven replies (e.g. the program intro) are not the task answer, so they don't complete it.
+    const matched = !!reply && !reply.notATask;
+    if (!reply) reply = { text: "I want to make sure I point you in the right direction. Could you tell me a bit more about what you'd like help with?" };
+    this.setState({
+      messages: this.state.messages.concat([this.mkAI(reply.text, { cards: reply.cards || null, taskDone: matched })]),
+      thinking: false, chips: [], showChips: false
+    });
+  }
+
+  chipTap(chip) {
+    if (this.state.thinking) return;
+    this.setState({ selectedChip: chip });
+    clearTimeout(this._c);
+    this._c = setTimeout(() => { this.setState({ selectedChip: null }); this.send(chip); }, 280);
+  }
+
+  scrollTrack(id, dir) {
+    const el = document.getElementById('track-' + id);
+    if (el) el.scrollBy({ left: dir * el.clientWidth * 0.85, behavior: 'smooth' });
+  }
+
+  renderVals() {
+    const st = this.state;
+    const messages = st.messages.map(m => {
+      const cards = (m.cards || []).map((c, i) => Object.assign({}, c, { slotId: 'slot-' + m.id + '-' + i }));
+      return {
+        id: m.id, text: m.text, time: m.time,
+        paragraphs: m.role === 'ai' ? this.parseBody(m.text) : [],
+        taskDone: !!m.taskDone,
+        isUser: m.role === 'user', isAI: m.role === 'ai',
+        hasCards: cards.length > 0, multi: cards.length > 1, cards,
+        scrollPrev: () => this.scrollTrack(m.id, -1),
+        scrollNext: () => this.scrollTrack(m.id, 1)
+      };
+    });
+    const chips = st.chips.map(c => ({
+      label: c, selected: st.selectedChip === c, notSelected: st.selectedChip !== c,
+      onTap: () => this.chipTap(c)
+    }));
+    const canSend = st.inputText.trim().length > 0 && !st.thinking;
+    const scenarios = Object.values(this.scenarios()).map(s => ({
+      id: s.id, label: s.label, active: s.id === st.scenarioId, inactive: s.id !== st.scenarioId,
+      onClick: () => this.loadScenario(s.id, true)
+    }));
+    return {
+      messages, chips, scenarios,
+      thinking: st.thinking,
+      showChips: st.showChips && chips.length > 0,
+      inputText: st.inputText, canSend, cannotSend: !canSend,
+      showBar: this.props.showScenarioBar === true && !this.mazeMode,
+      isExplore: st.screen === 'explore', isChat: st.screen === 'chat',
+      onOpenChat: () => this.loadScenario(this.state.scenarioId, true),
+      onGoExplore: () => this.setState({ screen: 'explore' }),
+      onCite: (e) => { e.preventDefault(); },
+      onInput: e => this.setState({ inputText: e.target.value }),
+      onKeyDown: e => { if (e.key === 'Enter') { e.preventDefault(); this.send(this.state.inputText); } },
+      onSend: () => this.send(this.state.inputText),
+      onRestart: () => this.loadScenario(this.state.scenarioId, true),
+      setScrollEl: el => { this.scrollEl = el; }
+    };
+  }
+}
+</script>
+</body>
+</html>
