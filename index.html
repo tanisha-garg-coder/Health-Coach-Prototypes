@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>myScout — Maze usability prototypes</title>
+<link rel="stylesheet" href="_ds/league-brand-design-system-eabd0bcf-cb88-456f-95b4-57c71f062708/colors_and_type.css">
+<style>
+  :root { --ink: #250D53; --blurple: #501CD2; --line: #E4DFF2; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: clamp(24px, 5vw, 64px) 16px;
+    font-family: 'Inter Tight', 'Inter', system-ui, sans-serif;
+    color: var(--ink); background: #F6F4FB;
+    display: flex; flex-direction: column; align-items: center;
+  }
+  .wrap { width: 100%; max-width: 860px; }
+  header { margin-bottom: 28px; }
+  .eyebrow { font-size: 12px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--blurple); }
+  h1 { font-size: clamp(28px, 5vw, 40px); line-height: 1.1; margin: 8px 0 10px; letter-spacing: -.02em; }
+  .sub { font-size: 16px; line-height: 1.55; color: #4B4470; max-width: 62ch; }
+  .sub code { background: #ECE7F8; padding: 1px 6px; border-radius: 6px; font-size: 13px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 14px; margin-top: 26px; }
+  .card {
+    display: flex; flex-direction: column; gap: 8px;
+    background: #fff; border: 1px solid var(--line); border-radius: 16px;
+    padding: 18px 18px 16px; text-decoration: none; color: inherit;
+    box-shadow: 0 1px 2px rgba(37,13,83,.04); transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease;
+  }
+  .card:hover { transform: translateY(-2px); box-shadow: 0 10px 24px -12px rgba(37,13,83,.35); border-color: #C9BEF0; }
+  .tasknum { font-size: 12px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--blurple); }
+  .title { font-size: 18px; font-weight: 700; letter-spacing: -.01em; }
+  .prompt { font-size: 13.5px; line-height: 1.5; color: #5B5580; }
+  .go { margin-top: auto; padding-top: 8px; font-size: 13px; font-weight: 700; color: var(--blurple); display: inline-flex; align-items: center; gap: 6px; }
+  footer { margin-top: 34px; font-size: 13px; line-height: 1.6; color: #6A6490; }
+  footer a { color: var(--blurple); }
+  .note { margin-top: 22px; background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 16px 18px; font-size: 13.5px; line-height: 1.6; color: #4B4470; }
+  .note strong { color: var(--ink); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">myScout · League</div>
+    <h1>Health Coach usability prototypes</h1>
+    <p class="sub">Seven single-task prototypes wired for Maze usability testing. Point each Maze mission at
+    the matching link below — every task launches with <code>?maze=1</code>, which drops the participant
+    straight into the chat for that task, hides the scenario switcher, and pre-fills the task prompt.</p>
+  </header>
+
+  <div class="grid" id="grid"></div>
+
+  <div class="note">
+    <strong>Setting up a Maze mission?</strong> Use the link on each card as the mission URL. Each prototype
+    already carries the Maze universal tracking snippet — add your project API key once (see
+    <a href="MAZE.md">MAZE.md</a>) and clicks, paths, and heatmaps are captured automatically. A participant
+    reaches the goal when the <em>“Task completed — continue in Maze”</em> banner appears.
+  </div>
+
+  <footer>
+    Prototypes render client-side (React is loaded from a CDN at runtime), so they must be opened over
+    <em>http(s)</em> — e.g. GitHub Pages — not from the local filesystem. Full instructions in
+    <a href="MAZE.md">MAZE.md</a>.
+  </footer>
+</div>
+
+<script>
+  // Each task file is its own single-task Maze mission. Links use ?maze=1 so the
+  // file launches the task it represents, regardless of its demo default.
+  var TASKS = [
+    { n: 1, file: "Task 1 - Diabetes Basics.dc.html",     title: "Diabetes basics",      prompt: "What is type 2 diabetes and how could it affect my daily life?" },
+    { n: 2, file: "Task 2 - Metformin.dc.html",           title: "Metformin",            prompt: "I've been prescribed Metformin. What should I know about this medication?" },
+    { n: 3, file: "Task 3 - Diet Changes.dc.html",        title: "Diet changes",         prompt: "What diet changes could help me manage type 2 diabetes?" },
+    { n: 4, file: "Task 4 - Insurance Programs.dc.html",   title: "Insurance programs",   prompt: "Does my insurance offer any programs to help me manage type 2 diabetes?" },
+    { n: 5, file: "Task 5 - Manage Stress.dc.html",        title: "Manage stress",        prompt: "I've been feeling very stressed lately. What can I do to manage it?" },
+    { n: 6, file: "Task 6 - Depression Symptoms.dc.html",  title: "Depression symptoms",  prompt: "What are the common symptoms of depression?" },
+    { n: 7, file: "Task 7 - Escalation.dc.html",           title: "Crisis escalation",    prompt: "I haven't slept for several nights, I feel chest tightness, and I can't cope. What should I do next?" }
+  ];
+  var grid = document.getElementById('grid');
+  TASKS.forEach(function (t) {
+    var href = encodeURI(t.file) + '?maze=1';
+    var a = document.createElement('a');
+    a.className = 'card';
+    a.href = href;
+    a.innerHTML =
+      '<span class="tasknum">Task ' + t.n + '</span>' +
+      '<span class="title">' + t.title + '</span>' +
+      '<span class="prompt">“' + t.prompt + '”</span>' +
+      '<span class="go">Open mission &rarr;</span>';
+    grid.appendChild(a);
+  });
+</script>
+</body>
+</html>

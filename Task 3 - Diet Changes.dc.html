@@ -12,8 +12,24 @@
 <link rel="stylesheet" href="_ds/league-brand-design-system-eabd0bcf-cb88-456f-95b4-57c71f062708/colors_and_type.css">
 <script src="_ds/league-brand-design-system-eabd0bcf-cb88-456f-95b4-57c71f062708/_ds_bundle.js"></script>
 <script src="./image-slot.js"></script>
-<!-- MAZE TRACKING: paste your Maze snippet on the next line (keep it inside <helmet>
-<title>myScout — Diabetes chat prototype</title>). -->
+<!-- ============================ MAZE TRACKING ============================
+     Maze universal snippet. Replace PASTE-YOUR-MAZE-PROJECT-API-KEY with the
+     API key from your Maze project (Create/Edit maze > Add block > Snippet, or
+     Project settings). Leave everything else unchanged. Safe to ship with the
+     placeholder: with no real key the loader simply no-ops.
+     ====================================================================== -->
+<script>
+  (function (m, a, z, e) {
+    var s, t;
+    try { t = m.sessionStorage.getItem('maze-us'); } catch (err) {}
+    if (!t) { t = new Date().getTime(); try { m.sessionStorage.setItem('maze-us', t); } catch (err) {} }
+    s = a.createElement('script');
+    s.src = z + '?apiKey=' + e;
+    s.async = true;
+    a.getElementsByTagName('head')[0].appendChild(s);
+    m.mazeUniversalSnippetApiKey = e;
+  })(window, document, 'https://snippet.maze.co/maze-universal-loader.js', 'PASTE-YOUR-MAZE-PROJECT-API-KEY');
+</script>
 
 <style>
   body { margin: 0; }
@@ -283,14 +299,18 @@ class Component extends DCLogic {
     super(props);
     this.uid = 0;
     // ----- Maze deep-linking -----
-    // Each usability task is its own entry point. Point a Maze block at:
-    //   ...myScout Chat.dc.html?task=1   (2, 3, 4)
-    // task=N lands directly in the chat for that task with the scenario bar hidden.
+    // Each usability task is its own Maze mission entry point. Launch either way:
+    //   this file's own task (recommended):  <file>.dc.html?maze=1
+    //   any task by number, from any file:   <file>.dc.html?task=1 .. 7  (or ?test=1|2)
+    // Either lands directly in the chat for that task with the scenario bar
+    // hidden, so each mission stays isolated and repeatable.
     let params = {};
     try { params = Object.fromEntries(new URLSearchParams(location.search)); } catch (e) {}
-    const taskMap = { '1': 'task1', '2': 'task2', '3': 'task3', '4': 'task4' };
+    const taskMap = { '1': 'task1', '2': 'task2', '3': 'task3', '4': 'task4', '5': 'task5', '6': 'task6', '7': 'task7' };
     const testMap = { '1': 'test1', '2': 'test2' };
-    const mazeTask = taskMap[params.task] || testMap[params.test];
+    // OWN_TASK is the single task this file represents; ?maze=1 launches it.
+    const OWN_TASK = 'task3';
+    const mazeTask = taskMap[params.task] || testMap[params.test] || ('maze' in params ? OWN_TASK : null);
     this.mazeMode = !!mazeTask;
     const scenarioId = mazeTask || props.startScenario || 'test1';
     let screen = props.startScreen === 'chat' ? 'chat' : 'explore';
@@ -360,6 +380,10 @@ class Component extends DCLogic {
       task2: { id: 'task2', label: 'Task 2 \u00b7 Metformin', welcome: { text: WELCOME, chips: START_CHIPS }, replies: [Object.assign({}, R2, { chips: ['Something else'] })] },
       task3: { id: 'task3', label: 'Task 3 \u00b7 Diet', welcome: { text: WELCOME, chips: START_CHIPS }, replies: [Object.assign({}, R3, { chips: ['Something else'] })] },
       task4: { id: 'task4', label: 'Task 4 \u00b7 Insurance', welcome: { text: WELCOME, chips: START_CHIPS }, replies: [Object.assign({}, R4, { chips: ['View my benefits', 'Something else'] })] },
+      // ----- Per-task scenarios for the stress / mental-health flow (Tasks 5-7) -----
+      task5: { id: 'task5', label: 'Task 5 \u00b7 Stress', welcome: { text: WELCOME, chips: START_CHIPS }, replies: [Object.assign({}, { text: "It sounds like you've been feeling really stressed lately, and it's completely understandable to want some ways to manage that. There are many simple and effective strategies you can try to help keep stress at bay.\n\nThings like getting some movement in, even for just 10 minutes, can release feel-good chemicals and reduce tension [[1:Lower Your Stress]]. Practicing deep breathing techniques, such as box breathing, can also help calm your body and mind [[2:Manage Stress More Calmly]]. Additionally, finding a hobby you love or spending time in nature can provide a valuable break and help you de-stress [[1:Lower Your Stress]].\n\nWould you like to explore more tips related to physical activity, mindfulness, or perhaps time management?", keys: ['stress', 'stressed', 'overwhelm', 'relax', 'manage', 'tips', 'calm', 'tension', 'burnout', 'burn out'] }, { chips: ['Something else'] })] },
+      task6: { id: 'task6', label: 'Task 6 \u00b7 Depression', welcome: { text: WELCOME, chips: START_CHIPS }, replies: [Object.assign({}, { text: "It's understandable to wonder about the symptoms of depression, especially when you're feeling stressed. Depression can manifest in various ways, and it's more than just feeling sad from time to time.\n\nCommon symptoms can include a persistent feeling of sadness, hopelessness, or emptiness, and a loss of interest or pleasure in activities you once enjoyed. You might also experience changes in sleep patterns (sleeping too much or too little), fatigue or low energy, changes in appetite, difficulty concentrating, or feelings of worthlessness or guilt [[1:Learn to Face Depression]][[2:What You Need to Know About Depression]]. If you're having thoughts about hurting yourself, it's important to seek help immediately.\n\nConnecting specific feelings to a diagnosis is best done by a healthcare professional who can consider your full health picture. Since you're looking to manage your feelings of depression, discussing these symptoms with a doctor or mental health professional can help you get personalized support and develop a plan that's right for you.\n\nWould you like to explore some strategies for managing daily mood or stress, or perhaps learn more about how to connect with a mental health professional?", keys: ['depress', 'symptom', 'sad', 'hopeless', 'mood', 'mental', 'anxi', 'feeling down', 'empt'] }, { chips: ['Something else'] })] },
+      task7: { id: 'task7', label: 'Task 7 \u00b7 Escalation', welcome: { text: WELCOME, chips: START_CHIPS }, replies: [{ text: "Looks like you need more support than I can offer right now. Please call or text the Crisis Lifeline at 988 for help or call 911 if you\u2019re in immediate danger.", priority: true, keys: ['cope', "can't cope", 'cant cope', 'chest', 'slept', "haven't slept", 'panic', 'danger', 'hurt myself', 'suicid', 'crisis', 'breathing', 'tightness', 'what should i', 'what do i do', 'emergency'] }] },
       emergency: {
         id: 'emergency', label: 'Emergency escalation',
         welcome: { text: WELCOME, chips: START_CHIPS },
